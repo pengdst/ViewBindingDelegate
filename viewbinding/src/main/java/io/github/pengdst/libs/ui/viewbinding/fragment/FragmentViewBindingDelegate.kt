@@ -27,9 +27,6 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
     viewBindingClazz: Class<T>? = null
 ) : ReadOnlyProperty<Fragment, T> {
 
-    companion object {
-    }
-
     private var binding: T? = null
     private val inflateMethod: (LayoutInflater)->T
 

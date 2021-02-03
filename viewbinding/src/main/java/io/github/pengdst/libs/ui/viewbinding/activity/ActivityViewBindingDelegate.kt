@@ -2,10 +2,7 @@ package io.github.pengdst.libs.ui.viewbinding.activity
 
 import android.app.Activity
 import android.view.LayoutInflater
-import androidx.annotation.MainThread
-import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import io.github.pengdst.libs.ui.viewbinding.fragment.FragmentViewBindingDelegate
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -21,15 +18,6 @@ import kotlin.reflect.KProperty
 
 class ActivityViewBindingDelegate<T : ViewBinding>(private val bindingClass: Class<T>) :
     ReadOnlyProperty<Activity, T> {
-
-    companion object Extension {
-        @MainThread
-        inline fun <reified T : ViewBinding> Fragment.viewBindings(): FragmentViewBindingDelegate<T> =
-            FragmentViewBindingDelegate(
-                fragment = this,
-                viewBindingClazz = T::class.java
-            )
-    }
 
     /**
      * initiate variable for binding view
