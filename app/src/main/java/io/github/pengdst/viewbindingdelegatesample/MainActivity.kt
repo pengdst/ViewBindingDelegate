@@ -3,7 +3,7 @@ package io.github.pengdst.viewbindingdelegatesample
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import io.github.pengdst.libs.ui.extensions.viewBindings
+import io.github.pengdst.libs.ui.activity.viewbinding.ActivityViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.viewbindingdelegatesample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
