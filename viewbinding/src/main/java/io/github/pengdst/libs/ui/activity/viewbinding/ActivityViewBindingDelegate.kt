@@ -1,7 +1,9 @@
-package io.github.pengdst.libs.ui.viewbinding.activity
+package io.github.pengdst.libs.ui.activity.viewbinding
 
 import android.app.Activity
 import android.view.LayoutInflater
+import androidx.annotation.MainThread
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
@@ -18,6 +20,12 @@ import kotlin.reflect.KProperty
 
 class ActivityViewBindingDelegate<T : ViewBinding>(private val bindingClass: Class<T>) :
     ReadOnlyProperty<Activity, T> {
+
+    companion object {
+        @MainThread
+        inline fun <reified T : ViewBinding> AppCompatActivity.viewBindings(): ActivityViewBindingDelegate<T> =
+            ActivityViewBindingDelegate(T::class.java)
+    }
 
     /**
      * initiate variable for binding view

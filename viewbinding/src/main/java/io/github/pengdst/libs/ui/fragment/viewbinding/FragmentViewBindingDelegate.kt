@@ -1,8 +1,9 @@
-package io.github.pengdst.libs.ui.viewbinding.fragment
+package io.github.pengdst.libs.ui.fragment.viewbinding
 
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
+import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
@@ -26,6 +27,15 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
     viewbindingInflate: ((LayoutInflater) -> T)? = null,
     viewBindingClazz: Class<T>? = null
 ) : ReadOnlyProperty<Fragment, T> {
+
+    companion object {
+        @MainThread
+        inline fun <reified T : ViewBinding> Fragment.viewBindings(): FragmentViewBindingDelegate<T> =
+            FragmentViewBindingDelegate(
+                fragment = this,
+                viewBindingClazz = T::class.java
+            )
+    }
 
     private var binding: T? = null
     private val inflateMethod: (LayoutInflater)->T
